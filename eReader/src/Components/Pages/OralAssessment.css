@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 0;
+    background-color: white ;
+    color: black;
+    transition: margin-left 0.3s ease;
+  }
+
+.mainHeader {
+    font-size: 100px;
+    font-family: Arial, sans-serif;
+    color: black;
+    position: fixed;
+    padding:30px;
+    bottom: 500px;
+    left: 580px;
+    width: 1000px;
+    word-wrap: break-word;
+    text-align: center;
+  }
+
+  .divStyle{
+    border: black 1px solid;
+    border-radius: 20px;
+    word-wrap: break-word;
+    width: 600px;
+    height: 400px;
+    text-align: left;
+    font-size: 20px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    top: 180px;
+    right: 100px;
+  }
+  
+  
+  .divStyle img{
+    width: 120%; /* Set image width to fill container */
+    height: 150px;
+    display: block; /* Remove default image spacing */
+    border-bottom: black 1px solid;
+    position: relative;
+    right: 20px;
+  }
+  
+  
+  .bigDiv {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 10px;
+  position: fixed;
+  left: 570px;
+  bottom: 280px;
+  }

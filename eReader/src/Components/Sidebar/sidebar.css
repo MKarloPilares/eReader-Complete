@@ -1,0 +1,37 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -500px;
+  width: 400px;
+  height: 100%;
+  background-color: #228b22;
+  transition: left 0.3s ease;
+  z-index: 99;
+  font-weight: bold;
+  font-size: 40px;
+  font-family: Helvetica, sans-serif;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-menu {
+  list-style-type: none;
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  padding: 0px;
+  margin: 50px 0 0 0;
+}
+
+.sidebar-menu li {
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.sidebar-menu li:hover {
+  background-color: #ffd700;
+  color: #228b22;
+}
