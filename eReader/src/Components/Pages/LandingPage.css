@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif; 
+}
+
+.pane {
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    background-image: url('../Images/background.png');
+}
+
+.container {
+    width: 520px;
+    height: 480px;
+    position: relative;
+    margin: 6% auto;
+    background-color: #fff;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo {
+    position: absolute;
+    top: 10px;
+    width: auto;
+    height: 68px;
+}
+
+.icon1 {
+    vertical-align: middle;
+    margin: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.icon2 {
+    vertical-align: middle;
+    margin: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+label {
+    margin-top: 10px;
+    margin: auto 0;
+    font-size: px;
+    color: #fff;
+}
+
+.btn-container {
+    width: 520px;
+    margin: 35px auto;
+    position: relative;
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+}
+
+.toggle-btn {
+    padding: 20px;
+    margin: 20px;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    width: 240px;
+    height: 200px;
+    position: relative;
+    text-align: center;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.toggle-btn:hover {
+    background-color: rgb(161, 224, 161);
+    transform: scale(1.15) perspective(1px)
+}

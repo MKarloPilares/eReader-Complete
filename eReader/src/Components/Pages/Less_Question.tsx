@@ -7,13 +7,17 @@ import { Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import RecAudio from '../Images/RecordedAudio.png';
 import { Image } from "react-bootstrap";
+import { useLocation } from 'react-router-dom';
 
-const Less_Question = ({ setCurrentPage, LessName, LessDesc, ChapName, setQuery }) => {
+const Less_Question = () => {
     const [post, setPost] = useState<any[]>([]);
     const [isListening, setIsListening] = useState(false);
     const [recognizedText, setRecognizedText] = useState('');
     const [loading, setLoading] = useState(true);
     const [indexCheck, setIndexCheck] = useState(1);
+    const location = useLocation();
+    const {LessDesc, ChapName} = location.state || {};
+
 
     useEffect(() => {
       fetchData();
@@ -134,9 +138,6 @@ const Less_Question = ({ setCurrentPage, LessName, LessDesc, ChapName, setQuery 
                 </Row>
                 )}
                 <Row style={{ paddingTop: '50px', paddingBottom: '20px' }}>
-                    <Col>
-                        <Button variant="secondary" onClick={() => { setCurrentPage("Chapters"); setQuery(LessName) }} size="lg"> Go Back </Button>
-                    </Col>
                 </Row>
             </Container>
         </ThemeProvider>

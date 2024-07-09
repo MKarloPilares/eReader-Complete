@@ -5,8 +5,10 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Row} from 'react-bootstrap';
 import {Col} from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
-const Eng_Assessment = ({setCurrentPage, setQuery, setBackPage}) => {
+const Eng_Assessment = () => {
+  let navigate = useNavigate();
   const [post, setPost] = useState<any[]>([]);
   useEffect(() => {
     fetchData();
@@ -32,6 +34,14 @@ const Eng_Assessment = ({setCurrentPage, setQuery, setBackPage}) => {
       console.error('Error fetching data:', error);
     }
   };
+
+  const goToPage = (page, AssName) => {
+    navigate(page, {
+      state: {
+        AssName: AssName
+      }
+    })
+  }
 
   const loadImage = (element) => {
     const CHUNK_SIZE = 0x8000;
@@ -67,7 +77,7 @@ const Eng_Assessment = ({setCurrentPage, setQuery, setBackPage}) => {
           <Card.Body>
             <Card.Title>{mess.AssName}</Card.Title>
             <Card.Text>{mess.AssDesc}</Card.Text>
-            <Button variant="success"  onClick={() => {setCurrentPage("OralAssessment"); setQuery(mess.AssName)}} size='lg'style={{position: "relative", left: "350px", fontWeight: 'bold'}}>START</Button>
+            <Button variant="success"  onClick={() => goToPage("/Oral_Assessment", mess.AssName)} size='lg'style={{position: "relative", left: "350px", fontWeight: 'bold'}}>START</Button>
           </Card.Body>
           </Card>
           </Col>
@@ -78,7 +88,7 @@ const Eng_Assessment = ({setCurrentPage, setQuery, setBackPage}) => {
           <Card.Body>
             <Card.Title>{post[index+1].AssName}</Card.Title>
             <Card.Text>{post[index+1].AssDesc} </Card.Text>
-            <Button variant="success" onClick={() => {setCurrentPage("OralAssessment"); setQuery(post[index+1].AssName); setBackPage('Eng_Assessment')}} size='lg'style={{position: "relative", left: "350px", fontWeight: 'bold'}}>START</Button>
+            <Button variant="success" onClick={() => goToPage("/Oral_Assessment", post[index+1].AssName)}  size='lg'style={{position: "relative", left: "350px", fontWeight: 'bold'}}>START</Button>
           </Card.Body>
           </Card>
           </Col>)}

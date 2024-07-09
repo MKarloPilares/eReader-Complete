@@ -6,8 +6,11 @@ import {Col} from "react-bootstrap";
 import {Image} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, ThemeProvider} from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
-const OralAssessment = ({setCurrentPage, Query, setQuery, backPage}) => {
+const OralAssessment = () => {
+  const location = useLocation();
+  const { AssName } = location.state || {};
   const [isListening, setIsListening] = useState(false);
   const [recognizedText, setRecognizedText] = useState('');
   const [post, setPost] = useState<any[]>([]);
@@ -21,7 +24,7 @@ const OralAssessment = ({setCurrentPage, Query, setQuery, backPage}) => {
 
   const fetchData = async () => {
       const requestData = {
-          AssName: Query,
+          AssName: AssName,
         };
       
         try {
@@ -142,9 +145,6 @@ const OralAssessment = ({setCurrentPage, Query, setQuery, backPage}) => {
         </Row>
         )}
         <Row style={{ paddingTop: '50px', paddingBottom: '20px' }}>
-            <Col>
-                <Button variant="secondary" onClick={() => { setCurrentPage(backPage); setQuery(post[0].AssName) }} size="lg"> Go Back </Button>
-            </Col>
         </Row>
     </Container>
 </ThemeProvider>

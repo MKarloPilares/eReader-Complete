@@ -6,9 +6,14 @@ import { Card } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import CIcon from '@coreui/icons-react';
 import { cilArrowThickRight } from '@coreui/icons';
+import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-const Chapter = ({setCurrentPage, Query, LessName, LessDesc, setChapName}) => {
+const Chapter = () => {
+    let navigate = useNavigate();
     const [post, setPost] = useState<any[]>([]);
+    const location = useLocation();
+    const {Query, LessName, LessDesc} = location.state || {};
     useEffect(() => {
       fetchData();
     }, []);
@@ -34,6 +39,15 @@ const Chapter = ({setCurrentPage, Query, LessName, LessDesc, setChapName}) => {
       console.error('Error fetching data:', error);
     }
   };
+
+  const goToPage = (page , LessDesc, ChapName) => {
+    navigate(page, {
+      state: {
+        LessDesc: LessDesc,
+        ChapName: ChapName
+      }
+    })
+  }
 
     const loadImage = (element) => {
         const CHUNK_SIZE = 0x8000;
@@ -69,8 +83,8 @@ const Chapter = ({setCurrentPage, Query, LessName, LessDesc, setChapName}) => {
                             <Card.Body>
                                 <CardSubtitle style={{ position: 'absolute', left: '485px', top: '30px', fontSize: '46px'}}>{mess.ChapName}</CardSubtitle>
                                 <CardTitle style={{ position: 'absolute', left: '485px', top: '82px', fontSize: '52px', fontWeight: 'bolder'}}>{mess.ChapDesc}</CardTitle>
-                                <Button variant="primary" style={{ position: 'absolute', width: '182px', height: '116px', right: '29px', bottom: '24px', backgroundColor: '#FFD700', border: 'none'}}
-                                    onClick={() => {setCurrentPage("Less_Question"); setChapName(mess.ChapName)}}><CIcon icon={cilArrowThickRight} style={{width: '160px', height: '90px'}}/></Button>
+                                <Button variant="primary" onClick={() => goToPage("/Less_Question", LessDesc, mess.ChapName)} style={{ position: 'absolute', width: '182px', height: '116px', right: '29px', bottom: '24px', backgroundColor: '#FFD700', border: 'none'}}
+                                    ><CIcon icon={cilArrowThickRight} style={{width: '160px', height: '90px'}}/></Button>
                             </Card.Body>
                         </Card>
                     </Row>

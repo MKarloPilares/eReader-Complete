@@ -7,9 +7,15 @@ import {Col} from 'react-bootstrap';
 import {ThemeProvider} from 'react-bootstrap';
 import img1 from '../Images/lessons.jpg';
 import img2 from '../Images/assessment.jpg';
+import { useNavigate } from 'react-router-dom';
 
 
-const Tag_DashBoard = ({setCurrentPage}) => {
+const Tag_DashBoard = () => {
+  let navigate = useNavigate();
+
+  const goToPage = (page) => {
+    navigate(page);
+  }
   return (
     <ThemeProvider
     breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
@@ -26,7 +32,7 @@ const Tag_DashBoard = ({setCurrentPage}) => {
                 <Card.Body>
                   <Card.Title> LESSONS</Card.Title>
                   <Card.Text>Lorem ipsum dolor sit amet, </Card.Text>
-                  <Button variant="success"  onClick={() => setCurrentPage("Tag_Lessons")} size='lg'style={{position: "relative", left: "300px", fontWeight: 'bold'}}>Let's Begin!</Button>
+                  <Button variant="success" onClick={() => goToPage("/Tag_Lessons")} size='lg'style={{position: "relative", left: "300px", fontWeight: 'bold'}}>Let's Begin!</Button>
                 </Card.Body>
               </Card>
             </Col>
@@ -36,7 +42,7 @@ const Tag_DashBoard = ({setCurrentPage}) => {
               <Card.Body>
                 <Card.Title> ASSESSMENT</Card.Title>
                 <Card.Text>Lorem ipsum dolor sit amet, </Card.Text>
-                <Button variant="success"  onClick={() => setCurrentPage("Tag_Assessment")} size='lg'style={{position: "relative", left: "220px", fontWeight: 'bold'}}>Challenge Accepted!</Button>
+                <Button onClick={() => goToPage('/Tag_Assessments')}  variant="success" size='lg'style={{position: "relative", left: "220px", fontWeight: 'bold'}}>Challenge Accepted!</Button>
               </Card.Body>
             </Card>
           </Col>

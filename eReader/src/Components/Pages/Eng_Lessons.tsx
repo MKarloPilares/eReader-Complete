@@ -6,8 +6,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Row} from 'react-bootstrap';
 import {Col} from 'react-bootstrap';
 import {ThemeProvider} from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
-const Eng_Lessons = ({setCurrentPage, setQuery, setLessName, setLessDesc}) => {
+const Eng_Lessons = () => {
+  let navigate = useNavigate();
     const [post, setPost] = useState<any[]>([]);
     useEffect(() => {
       fetchData();
@@ -33,6 +35,16 @@ const Eng_Lessons = ({setCurrentPage, setQuery, setLessName, setLessDesc}) => {
         console.error('Error fetching data:', error);
       }
     };
+
+    const goToPage = (page, query, LessDesc) => {
+      navigate(page, {
+        state: {
+          Query: query,
+          LessName: query,
+          LessDesc: LessDesc
+        }
+      })
+    }
 
     const loadImage = (element) => {
         const CHUNK_SIZE = 0x8000;
@@ -66,7 +78,7 @@ const Eng_Lessons = ({setCurrentPage, setQuery, setLessName, setLessDesc}) => {
                                     <Card.Body>
                                         <Card.Title>{mess.lessName}</Card.Title>
                                         <Card.Text>{mess.lessDesc}</Card.Text>
-                                        <Button variant="success"  onClick={() => {setCurrentPage("Chapters"); setQuery(mess.lessName); setLessName(mess.lessName); setLessDesc(mess.lessDesc)}} 
+                                        <Button variant="success" onClick={() => goToPage('/Chapters', mess.lessName, mess.lessDesc )}
                                         size='lg'style={{position: "relative", left: "300px", fontWeight: 'bold'}}>Let's Begin!</Button>
                                     </Card.Body>
                                 </Card>
@@ -78,8 +90,8 @@ const Eng_Lessons = ({setCurrentPage, setQuery, setLessName, setLessDesc}) => {
                                     <Card.Body>
                                         <Card.Title>{post[index+1].lessName} </Card.Title>
                                         <Card.Text>{post[index+1].lessDesc} </Card.Text>
-                                        <Button variant="success"  onClick={() => {setCurrentPage("Chapters"); setQuery(post[index+1].lessName); setLessName(post[index+1].lessName); 
-                                          setLessDesc(post[index+1].lessDesc)}} size='lg'style={{position: "relative", left: "220px", fontWeight: 'bold'}}>Challenge Accepted!</Button>
+                                        <Button variant="success"  onClick={() => goToPage('/Chapters', post[index+1].lessName, post[index+1].lessDesc)}
+                                        size='lg'style={{position: "relative", left: "220px", fontWeight: 'bold'}}>Challenge Accepted!</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>)}
