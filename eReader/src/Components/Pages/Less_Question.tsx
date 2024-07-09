@@ -30,7 +30,7 @@ const Less_Question = () => {
         
         try {
             console.log(ChapName)
-            const response = await fetch('http://127.0.0.1:8000/lesson_questions', {
+            const response = await fetch('http://localhost:8000/lesson_questions', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'

@@ -27,31 +27,9 @@ const App = () => {
   return (
     <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']} minBreakpoint="xxs">
       <Router>
-        <div
-          style={{
-            overflow: 'auto',
-            boxSizing: 'border-box',
-            display: 'flex',
-            flexDirection: 'column',
-            position: 'relative',
-            padding: '0',
-            margin: '0',
-            width: '100vw',
-            height: '100vh',
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center center',
-          }}
-        >
+
           <Sidebar/>
-          <Container
-            style={{
-              padding: '50px',
-              position: 'relative',
-              marginLeft: '500px'
-            }}
-          >
+          
             <Routes>
               <Route path="/" element={<Languages/>} />
               <Route path="/Eng_DashBoard" element={<Eng_DashBoard />} />
@@ -64,8 +42,6 @@ const App = () => {
               <Route path="/Oral_Assessment" element={<OralAssessment />} />
               <Route path="/Tag_Assessments" element={<Tag_Assessments />} />
             </Routes>
-          </Container>
-        </div>
       </Router>
     </ThemeProvider>
   );

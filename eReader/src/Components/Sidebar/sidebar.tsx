@@ -18,6 +18,11 @@ const Sidebar = () => {
   return (
     <>
     <div className={`sidebar ${isOpen ? 'open' : ''}`}>
+      <div>
+        <button style={{backgroundColor: 'transparent'}} className={`toggle-button ${isOpen ? 'open' : ''}`} onClick={() => {toggleSidebar(); sendToggle(isOpen)}}>
+          <CIcon icon={cilHamburgerMenu} style={{width: '52px', height: '38px', color: '#228a22'}}/>
+        </button>
+      </div>
       <ul className="sidebar-menu">
         <li ><CIcon icon={cilScreenDesktop} style={{width: '45px', height: '45px'}}/>  DASHBOARD</li>
         <li onClick={() => goToPage('/Eng_DashBoard')} style={{fontSize: '35px', marginLeft: '40px'}}><CIcon icon={cilScreenDesktop} style={{width: '35px', height: '35px'}}/>  English</li>

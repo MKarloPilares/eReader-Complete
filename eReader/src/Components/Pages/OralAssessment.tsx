@@ -28,7 +28,7 @@ const OralAssessment = () => {
         };
       
         try {
-          const response = await fetch('http://127.0.0.1:8000/assessment_questions', {
+          const response = await fetch('http://localhost:8000/assessment_questions', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

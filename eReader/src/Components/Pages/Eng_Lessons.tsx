@@ -21,7 +21,7 @@ const Eng_Lessons = () => {
           };
         
           try {
-            const response = await fetch('http://127.0.0.1:8000/lessons', {
+            const response = await fetch('http://localhost:8000/lessons', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ const Eng_Lessons = () => {
     return (
         <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
         minBreakpoint="xxs">
-            <Container>
+            
                 <Row>
                     <h1 className="text-dark" style={{fontSize: '100px', width: '1200px', paddingRight: '120px',  textAlign: 'center', marginBottom: '20px'}}>English Lessons</h1>
                 </Row>
@@ -97,7 +97,7 @@ const Eng_Lessons = () => {
                             </Col>)}
                         </Row> ) : (<p></p>)}
                 </div>)}
-            </Container>
+            
         </ThemeProvider>
     );
 };

@@ -13,7 +13,7 @@
     background-image: url('../Images/background.png');
 }
 
-.container {
+#container {
     width: 520px;
     height: 480px;
     position: relative;
