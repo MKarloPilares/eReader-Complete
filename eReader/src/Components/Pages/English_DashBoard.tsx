@@ -22,10 +22,13 @@ const Eng_DashBoard = () => {
     breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
     minBreakpoint="xxs"
   >
-          <Row>
-          <h1 className='text-dark' style={{fontSize: '120px', width: '1200px', paddingRight: '120px',  textAlign: 'center', marginBottom: "20px"}}>English</h1>
-          </Row>
-          <Row>
+    <body>
+      <Row>
+        <div className="header">
+            <h1 className='text-dark'>English</h1>
+        </div>
+      </Row>
+      <Row>
             <Col class="col-md-5 col-md-offset-2">
               <Card border="success" style={{ width: '30rem' }}> 
                   <Card.Img variant="top" style={{borderBottom: 'gray 1px solid'}} src={img1}/> 
@@ -46,7 +49,8 @@ const Eng_DashBoard = () => {
               </Card.Body>
             </Card>
           </Col>
-        </Row>
+      </Row>
+      </body>
   </ThemeProvider>
   );
 };

@@ -27,9 +27,9 @@ const App = () => {
   return (
     <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']} minBreakpoint="xxs">
       <Router>
-
-          <Sidebar/>
-          
+        <aside>
+          <Sidebar />
+        </aside>
             <Routes>
               <Route path="/" element={<Languages/>} />
               <Route path="/Eng_DashBoard" element={<Eng_DashBoard />} />
