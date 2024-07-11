@@ -6,7 +6,7 @@ import ereaderlogo from "../Images/e-reader_Logo.svg" ;
 
 import './sidebar.css'; // Import CSS file for styling
 
-const Sidebar = () => {
+const Sidebar = ({setCurrentPage, sendToggle}) => {
   let navigate = useNavigate();
   const [lessonsOpen, setLessonOpen] = useState(false);
   const [assessmentOpen, setAssessmentOpen] = useState(false);

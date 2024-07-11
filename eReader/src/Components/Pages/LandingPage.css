@@ -14,7 +14,7 @@
 }
 
 #container {
-    width: 520px;
+    width: 550px;
     height: 480px;
     position: relative;
     margin: 6% auto;
@@ -64,7 +64,7 @@ label {
 
 .btn-container {
     width: 520px;
-    margin: 35px auto;
+    margin: 5px auto;
     position: relative;
     display: flex;
     justify-content: center; /* Horizontally center */

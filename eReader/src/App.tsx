@@ -14,10 +14,10 @@ import Tag_Lessons from './Components/Pages/Tag_Lessons';
 import Eng_Assessments from './Components/Pages/Eng_Assessments';
 import Tag_Assessments from './Components/Pages/Tag_Assessments';
 import OralAssessment from './Components/Pages/OralAssessment';
-import backgroundImage from './Components/Images/background.png';
+import backgroundImage from './Components/Images/image.jpg';
 
 const App = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState('/');
 
   const toggleSidebar = () => {
@@ -28,8 +28,9 @@ const App = () => {
     <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']} minBreakpoint="xxs">
       <Router>
         <aside>
-          <Sidebar />
+          <Sidebar setCurrentPage={setCurrentPage} sendToggle={toggleSidebar}/>
         </aside>
+        <div style={isSidebarOpen ?  ({}):({})}>
             <Routes>
               <Route path="/" element={<Languages/>} />
               <Route path="/Eng_DashBoard" element={<Eng_DashBoard />} />
@@ -42,6 +43,7 @@ const App = () => {
               <Route path="/Oral_Assessment" element={<OralAssessment />} />
               <Route path="/Tag_Assessments" element={<Tag_Assessments />} />
             </Routes>
+          </div>
       </Router>
     </ThemeProvider>
   );
