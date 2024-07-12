@@ -8,6 +8,7 @@ import CIcon from '@coreui/icons-react';
 import { cilArrowThickRight } from '@coreui/icons';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import './Chapters.css';
 
 const Chapter = () => {
     let navigate = useNavigate();
@@ -68,13 +69,15 @@ const Chapter = () => {
     return (
         <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
         minBreakpoint="xxs">
-            <Container>
-                <Row>
-                    <h1 style={{ paddingTop: '50px',textAlign: 'left', fontSize: '92px' }}>{LessName}</h1>
-                </Row>
-                <Row>
+            <body>
+              <div className="pane">
+                <div className="container">
+                  <div className="header">
+                    <h3>English Lesson / {LessName}</h3>
+                    <h1>{LessName}</h1>
                     <p className="subHead">{LessDesc}</p>
-                </Row>
+                  </div>
+                <div id="lessitems">
                 {post.map((mess: any, index: number) => 
                 <Row key={index}>
                     <Row style={{paddingTop: '20px', paddingBottom: '20px'}}>
@@ -89,7 +92,10 @@ const Chapter = () => {
                         </Card>
                     </Row>
                 </Row>)}
-            </Container>
+                </div>
+              </div>
+            </div>
+          </body>
         </ThemeProvider>
     );
 };

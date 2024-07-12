@@ -31,8 +31,7 @@ const Tag_DashBoard = () => {
           <div className="content-wrapper">
               <div className="container-group">
                 <div className="group-items">
-                  <Row>
-                    <Col>
+                  <div className="stack">
                       <div className="container-card">
                         <div className="card-img">
                           <img src={img1} alt="Lessons" />
@@ -49,8 +48,6 @@ const Tag_DashBoard = () => {
                           </div>
                         </div>
                       </div>
-                    </Col>
-                    <Col>
                       <div className="container-card">
                         <div className="card-img">
                           <img src={img2} alt="Lessons" />
@@ -67,8 +64,7 @@ const Tag_DashBoard = () => {
                           </div>
                         </div>
                       </div>
-                    </Col>
-                  </Row>
+                    </div>
                 </div>
               </div>
           </div>

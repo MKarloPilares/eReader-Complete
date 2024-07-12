@@ -79,7 +79,7 @@ const Eng_Lessons = () => {
                       {post.map((mess: any, index: number) => 
                       <div key={index}>
                           {index % 2 != 1 ? (
-                            <Stack direction="horizontal" gap={3}>
+                            <div className="stack">
                               <div className="container-card">
                                 <div className="card-img">
                                   <img src={loadImage(mess.LessImg.data)} alt="Lessons" />
@@ -132,25 +132,25 @@ const Eng_Lessons = () => {
                                       </div>
                                     </div>
                                   )}
-                                    {index + 1 < post.length && (
-                                      <div className="container-card">
-                                        <div className="card-img">
-                                          <img  src={loadImage(post[index+1].LessImg.data)} alt="Lessons" />
-                                        </div>
-                                        <div className="card-title">
-                                          <h4>{post[index+1].lessName}</h4>
-                                        </div>
-                                        <div className="card-descript">
-                                          <p>{post[index+1].lessDesc}</p>
-                                        </div>
-                                        <div className="card-btn">
-                                          <div className="d-grid gap-2">
-                                            <Button onClick={() => goToPage('/Chapters', post[index+1].lessName, post[index+1].lessDesc)} variant="success"  size='lg'>Time to Learn!</Button>
-                                          </div>
+                                  {index + 1 < post.length && (
+                                    <div className="container-card">
+                                      <div className="card-img">
+                                        <img  src={loadImage(post[index+1].LessImg.data)} alt="Lessons" />
+                                      </div>
+                                      <div className="card-title">
+                                        <h4>{post[index+1].lessName}</h4>
+                                      </div>
+                                      <div className="card-descript">
+                                        <p>{post[index+1].lessDesc}</p>
+                                      </div>
+                                      <div className="card-btn">
+                                        <div className="d-grid gap-2">
+                                          <Button onClick={() => goToPage('/Chapters', post[index+1].lessName, post[index+1].lessDesc)} variant="success"  size='lg'>Time to Learn!</Button>
                                         </div>
                                       </div>
+                                    </div>
                                   )}
-                              </Stack>  ) : (<p></p>)}
+                              </div>  ) : (<p></p>)}
                       </div>)}
                     </div>
                   </div>
