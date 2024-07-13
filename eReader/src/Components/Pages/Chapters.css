@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  
+  .pane {
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    background-color: blue;
+  }
+  
+  .container{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    text-align:left;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    z-index: 99;
+    padding: 30px;
+    border-radius: 15px;
+  }
+
+  #lessitems {
+    height: 450px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }

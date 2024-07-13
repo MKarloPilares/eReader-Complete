@@ -10,11 +10,11 @@
     background-position: center;
     background-size: cover;
     position: absolute;
-    background-image: url('../Images/background.png');
+    background-image: url('../Images/image.jpg');
 }
 
-.container {
-    width: 520px;
+#container {
+    width: 550px;
     height: 480px;
     position: relative;
     margin: 6% auto;
@@ -59,12 +59,12 @@ label {
     margin-top: 10px;
     margin: auto 0;
     font-size: px;
-    color: #fff;
+    color:#138025;
 }
 
 .btn-container {
     width: 520px;
-    margin: 35px auto;
+    margin: 5px auto;
     position: relative;
     display: flex;
     justify-content: center; /* Horizontally center */
@@ -84,10 +84,11 @@ label {
     font-size: 16px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 50px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
+    color:#138025;
 }
 
 .toggle-btn:hover {

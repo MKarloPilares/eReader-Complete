@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import RecAudio from '../Images/RecordedAudio.png';
 import { Image } from "react-bootstrap";
 import { useLocation } from 'react-router-dom';
+import './Less_Questions.css';
 
 const Less_Question = () => {
     const [post, setPost] = useState<any[]>([]);
@@ -30,7 +31,7 @@ const Less_Question = () => {
         
         try {
             console.log(ChapName)
-            const response = await fetch('http://127.0.0.1:8000/lesson_questions', {
+            const response = await fetch('http://localhost:8000/lesson_questions', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -93,53 +94,52 @@ const Less_Question = () => {
 
     return (
         <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']} minBreakpoint="xxs">
-            <Container fluid="sm" style={{ padding: '20px' }}>
-                <Row style={{ paddingTop: '55px', paddingBottom: '20px' }}>
-                    <Col>
-                        <h1>{ChapName}</h1>
-                        {LessDesc}
-                    </Col>
-                </Row>
+            <body>
+              <div className="pane">
+                <div className="container">
+                  <div className="header">
+                    <h3>English Lesson / {ChapName}</h3>
+                    <h1>{ChapName}</h1>
+                    <p className="subHead">{LessDesc}</p>
+                  </div>
+                <div className="container-quest">
                 {post.map((item: any, index: number) => 
-                <Row>
+                <div>
+                    
                     {indexCheck-1 == index ? (
-                    <Container fluid style={{ border: '1px solid black' }}> 
-                        <Row>
-                            <Col className="col-md-10"> 
-                                <h2>Direction: Read it loud and record your voice using the flashcards that shows on your screen. <Image src={RecAudio} rounded style={{ height: '50px', width:'60px' }}></Image></h2> 
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col md="auto">
-                                {item && item.QuestCard ? (
-                                    <Image src={loadObject(item.QuestCard.data, "data:image/png;base64")} style={{width: "1180px", height: "500px"}}></Image>
-                                ) : (
-                                    <div>No video available</div> // Fallback if video is not available
-                                )}
-                            </Col>
-                        </Row>
-                        <Row className='justify-content-center' style={{ padding: '20px' }}>
-                            <Col md="auto">
-                                <Image src={RecAudio} onClick={() => start(item.QuestAud.data)} rounded style={{height: '50px', width:'60px'}}/>
-                                <Button variant="primary" size="lg" style={{position: 'relative', left: '38%'}} onClick={isListening ? stopSpeechRecognition : startSpeechRecognition}>
-                                     {isListening ? "STOP RECORDING" : "RECORD"} </Button>
-                                <p></p>
-                                <h3 style={item.QuestAns === recognizedText ? ({color: 'green'}) : (recognizedText !== '' ? ({color: 'red'}) : 
-                                    ({visibility: 'hidden'}))}>{item.QuestAns === recognizedText ? ("CORRECT! GOOD JOB!") : ("TRY AGAIN! YOU CAN DO IT!")}</h3>
-                            </Col>
-                        </Row>
-                        <Row className='justify-content-end' style={{ padding: '20px' }}>
-                            <Col md="auto" style={{position: 'relative', right: '82%'}}><Button variant="primary" size="lg" onClick={() => setIndexCheck(indexCheck-1)}> BACK </Button></Col>
-                            <Col md="auto"><Button variant="primary" size="lg" onClick={() => setIndexCheck(indexCheck+1)}> NEXT </Button></Col>
-                        </Row>
-                    </Container>
+                    <div>
+                    <div>
+                        <h2>Direction: Read it loud and record your voice using the flashcards that shows on your screen. <Image src={RecAudio} rounded style={{ height: '50px', width:'60px' }}></Image></h2>
+                    </div>  
+                    <div>
+                        {item && item.QuestCard ? (
+                            <Image src={loadObject(item.QuestCard.data, "data:image/png;base64")} style={{width: "600px", height: "auto"}}></Image>
+                        ) : (
+                            <div>No video available</div> // Fallback if video is not available
+                            
+                        )}
+                        <Button className="toggle-btn"><Image src={RecAudio} onClick={() => start(item.QuestAud.data)} rounded style={{height: '50px', width:'60px'}}/></Button>
+                            <Button className="toggle-btn" variant="primary" size="lg" onClick={isListening ? stopSpeechRecognition : startSpeechRecognition}>
+                            {isListening ? "STOP RECORDING" : "RECORD"} </Button>
+                            <p></p>
+                            <h3 style={item.QuestAns === recognizedText ? ({color: 'green'}) : (recognizedText !== '' ? ({color: 'red'}) : 
+                                ({visibility: 'hidden'}))}>{item.QuestAns === recognizedText ? ("CORRECT! GOOD JOB!") : ("TRY AGAIN! YOU CAN DO IT!")}</h3>
+                            
+                            <div style={{margin: "20px"}}>
+                            <Button variant="primary" size="lg" onClick={() => setIndexCheck(indexCheck-1)}> BACK </Button>
+                            <Button variant="primary" style={{position: "relative", float: "right"}}size="lg" onClick={() => setIndexCheck(indexCheck+1)}> NEXT </Button>
+                            </div>
+                    </div>
+                    </div>
                     ) : (<h2>Chapter Finished! Congratulations!</h2>
                     )}
-                </Row>
+                </div>
                 )}
-                <Row style={{ paddingTop: '50px', paddingBottom: '20px' }}>
-                </Row>
-            </Container>
+                </div>
+                               
+                    </div>
+                </div>
+            </body>
         </ThemeProvider>
     );
 };

@@ -1,5 +1,5 @@
 import { Container } from 'react-bootstrap';
-import { Card } from 'react-bootstrap';
+import { Card, CardGroup } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Row} from 'react-bootstrap';
@@ -8,6 +8,9 @@ import {ThemeProvider} from 'react-bootstrap';
 import img1 from '../Images/lessons.jpg';
 import img2 from '../Images/assessment.jpg';
 import { useNavigate } from 'react-router-dom';
+import {Stack} from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
+import "./DashBoard.css"
 
 
 const Eng_DashBoard = () => {
@@ -22,33 +25,56 @@ const Eng_DashBoard = () => {
     breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
     minBreakpoint="xxs"
   >
-    <Container>
-          <Row>
-          <h1 className='text-dark' style={{fontSize: '120px', width: '1200px', paddingRight: '120px',  textAlign: 'center', marginBottom: "20px"}}>English</h1>
-          </Row>
-          <Row>
-            <Col class="col-md-5 col-md-offset-2">
-              <Card border="success" style={{ width: '30rem' }}> 
-                  <Card.Img variant="top" style={{borderBottom: 'gray 1px solid'}} src={img1}/> 
-                <Card.Body>
-                  <Card.Title> LESSONS</Card.Title>
-                  <Card.Text>Lorem ipsum dolor sit amet, </Card.Text>
-                  <Button variant="success"  onClick={() => goToPage("/Eng_Lessons")} size='lg'style={{position: "relative", left: "300px", fontWeight: 'bold'}}>Let's Begin!</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          <Col class='col-md-2'>
-            <Card border="success" style={{ width: '30rem' }}> 
-                <Card.Img variant="top" style={{borderBottom: 'gray 1px solid'}} src={img2}/> 
-              <Card.Body>
-                <Card.Title> ASSESSMENT</Card.Title>
-                <Card.Text>Lorem ipsum dolor sit amet, </Card.Text>
-                <Button onClick={() => goToPage('/Eng_Assessments')} variant="success"  size='lg'style={{position: "relative", left: "220px", fontWeight: 'bold'}}>Challenge Accepted!</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-    </Container>
+  <body>
+    <div className="pane">
+      <div className="container">
+          <div className="header">
+            <h3>Electronic Reading Platform</h3> 
+            <h1>E-Reader for Early Readers</h1>
+          </div>
+          <div className="content-wrapper">
+              <div className="container-group">
+                <div className="group-items">
+                    <div className="stack">
+                      <div className="container-card">
+                        <div className="card-img">
+                          <img src={img1} alt="Lessons" />
+                        </div>
+                        <div className="card-title">
+                          <h4>Lessons in English</h4>
+                        </div>
+                        <div className="card-descript">
+                          <p>Lorem ipsum dolor sit amet</p>
+                        </div>
+                        <div className="card-btn">
+                          <div className="d-grid gap-2">
+                            <Button onClick={() => goToPage('/Eng_Lessons')} variant="success"  size='lg'>Time to Learn!</Button>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="container-card">
+                        <div className="card-img">
+                          <img src={img2} alt="Lessons" />
+                        </div>
+                        <div className="card-title">
+                          <h4>Quizzes & Activities</h4>
+                        </div>
+                        <div className="card-descript">
+                          <p>Lorem ipsum dolor sit amet</p>
+                        </div>
+                        <div className="card-btn">
+                          <div className="d-grid gap-2">
+                            <Button onClick={() => goToPage('/Eng_Assessments')} variant="success"  size='lg'>Challenge Accepted!</Button>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </body>
   </ThemeProvider>
   );
 };

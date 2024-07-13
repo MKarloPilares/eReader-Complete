@@ -16,7 +16,6 @@ const Languages = () => {
   };
 
   const goToTagalog = () => {
-
     navigate('/Tag_Dashboard');
   };
 
@@ -25,11 +24,9 @@ const Languages = () => {
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
       minBreakpoint="xxs"
     >
-      <Container>
       <body>
-        <Container>
             <div className="pane">
-                <div className="container">
+                <div id="container">
                     <img className="logo" src={ereaderlogo} alt="E-Reader Logo" />
                     <div><label>Select Module Type</label></div>
                     <div className="btn-container">
@@ -39,9 +36,7 @@ const Languages = () => {
                     </div>
                 </div>
             </div>
-    </Container>
     </body>
-      </Container>
     </ThemeProvider>
   );
 };

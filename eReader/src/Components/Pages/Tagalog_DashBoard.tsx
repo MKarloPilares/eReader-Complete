@@ -21,33 +21,56 @@ const Tag_DashBoard = () => {
     breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
     minBreakpoint="xxs"
   >
-    <Container>
-          <Row>
-          <h1 className='text-dark' style={{fontSize: '120px', width: '1200px', paddingRight: '120px',  textAlign: 'center', marginBottom: "20px"}}>Tagalog</h1>
-          </Row>
-          <Row>
-            <Col class="col-md-5 col-md-offset-2">
-              <Card border="success" style={{ width: '30rem' }}> 
-                  <Card.Img variant="top" style={{borderBottom: 'gray 1px solid'}} src={img1}/> 
-                <Card.Body>
-                  <Card.Title> LESSONS</Card.Title>
-                  <Card.Text>Lorem ipsum dolor sit amet, </Card.Text>
-                  <Button variant="success" onClick={() => goToPage("/Tag_Lessons")} size='lg'style={{position: "relative", left: "300px", fontWeight: 'bold'}}>Let's Begin!</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          <Col class='col-md-2'>
-            <Card border="success" style={{ width: '30rem' }}> 
-                <Card.Img variant="top" style={{borderBottom: 'gray 1px solid'}} src={img2}/> 
-              <Card.Body>
-                <Card.Title> ASSESSMENT</Card.Title>
-                <Card.Text>Lorem ipsum dolor sit amet, </Card.Text>
-                <Button onClick={() => goToPage('/Tag_Assessments')}  variant="success" size='lg'style={{position: "relative", left: "220px", fontWeight: 'bold'}}>Challenge Accepted!</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-    </Container>
+    <body>
+    <div className="pane">
+      <div className="container">
+          <div className="header">
+            <h3>Electronic Reading Platform</h3> 
+            <h1>E-Reader para sa Bagong Mambabasa</h1>
+          </div>
+          <div className="content-wrapper">
+              <div className="container-group">
+                <div className="group-items">
+                  <div className="stack">
+                      <div className="container-card">
+                        <div className="card-img">
+                          <img src={img1} alt="Lessons" />
+                        </div>
+                        <div className="card-title">
+                          <h4>Mga Aralin sa Filipino</h4>
+                        </div>
+                        <div className="card-descript">
+                          <p>Lorem ipsum dolor sit amet</p>
+                        </div>
+                        <div className="card-btn">
+                          <div className="d-grid gap-2">
+                            <Button onClick={() => goToPage('/Tag_Lessons')} variant="success"  size='lg'>Simulan natin Mag-aral!</Button>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="container-card">
+                        <div className="card-img">
+                          <img src={img2} alt="Lessons" />
+                        </div>
+                        <div className="card-title">
+                          <h4>Quiz & Activities</h4>
+                        </div>
+                        <div className="card-descript">
+                          <p>Lorem ipsum dolor sit amet</p>
+                        </div>
+                        <div className="card-btn">
+                          <div className="d-grid gap-2">
+                            <Button onClick={() => goToPage('/Tag_Assessments')} variant="success"  size='lg'>Subukin ang Sarili</Button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </body>
   </ThemeProvider>
   );
 };
