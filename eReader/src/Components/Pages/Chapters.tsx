@@ -8,13 +8,12 @@ import CIcon from '@coreui/icons-react';
 import { cilArrowThickRight } from '@coreui/icons';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import './Chapters.css';
 
 const Chapter = () => {
     let navigate = useNavigate();
     const [post, setPost] = useState<any[]>([]);
     const location = useLocation();
-    const {Query, LessName, LessDesc} = location.state || {};
+    const {Query, LessName, LessDesc, Language} = location.state || {};
     useEffect(() => {
       fetchData();
     }, []);
@@ -26,7 +25,7 @@ const Chapter = () => {
         };
       
         try {
-          const response = await fetch('http://localhost:8000/chapters', {
+          const response = await fetch('http://127.0.0.1:8000/chapters', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -45,7 +44,9 @@ const Chapter = () => {
     navigate(page, {
       state: {
         LessDesc: LessDesc,
-        ChapName: ChapName
+        ChapName: ChapName,
+        LessName: LessName,
+        Language: Language
       }
     })
   }
@@ -69,33 +70,28 @@ const Chapter = () => {
     return (
         <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
         minBreakpoint="xxs">
-            <body>
-              <div className="pane">
-                <div className="container">
-                  <div className="header">
-                    <h3>English Lesson / {LessName}</h3>
-                    <h1>{LessName}</h1>
+            <Container>
+                <Row>
+                    <h1 style={{ paddingTop: '50px',textAlign: 'left', fontSize: '92px' }}>{LessName}</h1>
+                </Row>
+                <Row>
                     <p className="subHead">{LessDesc}</p>
-                  </div>
-                <div id="lessitems">
+                </Row>
                 {post.map((mess: any, index: number) => 
                 <Row key={index}>
                     <Row style={{paddingTop: '20px', paddingBottom: '20px'}}>
-                        <Card border= "success" style={{ width: '1427px', height: '366px'}}>
-                            <Card.Img src={loadImage(mess.ChapImg.data)} style={{ position: 'absolute', width: '460px', height: '332px', left: '18px', top: '18px'}}/>
+                        <Card border= "success" style={{ width: '80vw', height: '38vh'}}>
+                            <Card.Img src={loadImage(mess.ChapImg.data)} style={{ position: 'absolute', width: '24vw', height: '35vh', left: '18px', top: '18px'}}/>
                             <Card.Body>
-                                <CardSubtitle style={{ position: 'absolute', left: '485px', top: '30px', fontSize: '46px'}}>{mess.ChapName}</CardSubtitle>
-                                <CardTitle style={{ position: 'absolute', left: '485px', top: '82px', fontSize: '52px', fontWeight: 'bolder'}}>{mess.ChapDesc}</CardTitle>
+                                <CardSubtitle style={{ position: 'absolute', left: '26vw', top: '3vh', fontSize: '46px'}}>{mess.ChapName}</CardSubtitle>
+                                <CardTitle style={{ position: 'absolute', left: '26vw', top: '8vh', fontSize: '52px', fontWeight: 'bolder'}}>{mess.ChapDesc}</CardTitle>
                                 <Button variant="primary" onClick={() => goToPage("/Less_Question", LessDesc, mess.ChapName)} style={{ position: 'absolute', width: '182px', height: '116px', right: '29px', bottom: '24px', backgroundColor: '#FFD700', border: 'none'}}
                                     ><CIcon icon={cilArrowThickRight} style={{width: '160px', height: '90px'}}/></Button>
                             </Card.Body>
                         </Card>
                     </Row>
                 </Row>)}
-                </div>
-              </div>
-            </div>
-          </body>
+            </Container>
         </ThemeProvider>
     );
 };

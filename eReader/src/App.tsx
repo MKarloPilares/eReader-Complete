@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import { ThemeProvider } from 'react-bootstrap';
@@ -14,11 +14,14 @@ import Tag_Lessons from './Components/Pages/Tag_Lessons';
 import Eng_Assessments from './Components/Pages/Eng_Assessments';
 import Tag_Assessments from './Components/Pages/Tag_Assessments';
 import OralAssessment from './Components/Pages/OralAssessment';
-import backgroundImage from './Components/Images/image.jpg';
+import CMS from './Components/Pages/CMS';
 
 const App = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState('/');
+
+  useEffect(() => {
+    document.title = "E-Reader";
+  })
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -27,10 +30,34 @@ const App = () => {
   return (
     <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']} minBreakpoint="xxs">
       <Router>
-        <aside>
-          <Sidebar setCurrentPage={setCurrentPage} sendToggle={toggleSidebar}/>
-        </aside>
-        <div style={isSidebarOpen ?  ({}):({})}>
+        <div
+          style={{
+            overflow: 'auto',
+            boxSizing: 'border-box',
+            display: 'flex',
+            flexDirection: 'column',
+            position: 'relative',
+            padding: '0',
+            margin: '0',
+            width: '100vw',
+            height: '100vh',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center',
+          }}
+        >
+          <Sidebar sendToggle={toggleSidebar}/>
+          <Container
+            style={isSidebarOpen ? {
+              padding: '50px',
+              position: 'relative',
+              marginLeft: '25vw'
+            } : {              
+              padding: '50px',
+              position: 'relative',
+              marginLeft: '15vw'}
+            }
+          >
             <Routes>
               <Route path="/" element={<Languages/>} />
               <Route path="/Eng_DashBoard" element={<Eng_DashBoard />} />
@@ -42,8 +69,10 @@ const App = () => {
               <Route path="/Eng_Assessments" element={<Eng_Assessments />} />
               <Route path="/Oral_Assessment" element={<OralAssessment />} />
               <Route path="/Tag_Assessments" element={<Tag_Assessments />} />
+              <Route path="/CMS" element={<CMS />} />
             </Routes>
-          </div>
+          </Container>
+        </div>
       </Router>
     </ThemeProvider>
   );

@@ -5,10 +5,8 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Row} from 'react-bootstrap';
 import {Col} from 'react-bootstrap';
-import {Stack} from 'react-bootstrap';
 import {ThemeProvider} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import './DashBoard.css';
 
 const Tag_Lessons = () => {
     let navigate = useNavigate();
@@ -22,7 +20,8 @@ const Tag_Lessons = () => {
         state: {
           Query: query,
           LessName: query,
-          LessDesc: LessDesc
+          LessDesc: LessDesc,
+          Language: 'Tagalog'
         }
       })
     }
@@ -33,7 +32,7 @@ const Tag_Lessons = () => {
           };
         
           try {
-            const response = await fetch('http://localhost:8000/lessons', {
+            const response = await fetch('http://127.0.0.1:8000/lessons', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -66,98 +65,39 @@ const Tag_Lessons = () => {
     return (
         <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
         minBreakpoint="xxs">
-        <body>
-          <div className="pane">
-            <div className="container">
-              <div className="header">
-                <h3>Tagalog Dashboard / Lessons</h3>
-                <h1>E-Reader para sa Bagong Mambabasa</h1>
-              </div>
-              <div className="content-wrapper">
-                <div className="container-group">
-                  <div className="group-items">
-                      {post.map((mess: any, index: number) => 
-                      <div key={index}>
-                          {index % 2 != 1 ? (
-                            <Stack direction="horizontal" gap={3}>
-                              <div className="container-card">
-                                <div className="card-img">
-                                  <img src={loadImage(mess.LessImg.data)} alt="Lessons" />
-                                </div>
-                                <div className="card-title">
-                                  <h4>{mess.lessName}</h4>
-                                </div>
-                                <div className="card-descript">
-                                  <p>{mess.lessDesc}</p>
-                                </div>
-                                <div className="card-btn">
-                                  <div className="d-grid gap-2">
-                                    <Button onClick={() => goToPage('/Chapters', mess.lessName, mess.lessDesc )} variant="success"  size='lg'>Time to Learn!</Button>
-                                  </div>
-                                </div>
-                              </div>
-                                  {index + 1 < post.length && (
-                                    <div className="container-card">
-                                      <div className="card-img">
-                                        <img  src={loadImage(post[index+1].LessImg.data)} alt="Lessons" />
-                                      </div>
-                                      <div className="card-title">
-                                        <h4>{post[index+1].lessName}</h4>
-                                      </div>
-                                      <div className="card-descript">
-                                        <p>{post[index+1].lessDesc}</p>
-                                      </div>
-                                      <div className="card-btn">
-                                        <div className="d-grid gap-2">
-                                          <Button onClick={() => goToPage('/Chapters', post[index+1].lessName, post[index+1].lessDesc)} variant="success"  size='lg'>Time to Learn!</Button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  )}
-                                  {index + 1 < post.length && (
-                                    <div className="container-card">
-                                      <div className="card-img">
-                                        <img  src={loadImage(post[index+1].LessImg.data)} alt="Lessons" />
-                                      </div>
-                                      <div className="card-title">
-                                        <h4>{post[index+1].lessName}</h4>
-                                      </div>
-                                      <div className="card-descript">
-                                        <p>{post[index+1].lessDesc}</p>
-                                      </div>
-                                      <div className="card-btn">
-                                        <div className="d-grid gap-2">
-                                          <Button onClick={() => goToPage('/Chapters', post[index+1].lessName, post[index+1].lessDesc)} variant="success"  size='lg'>Time to Learn!</Button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  )}
-                                    {index + 1 < post.length && (
-                                      <div className="container-card">
-                                        <div className="card-img">
-                                          <img  src={loadImage(post[index+1].LessImg.data)} alt="Lessons" />
-                                        </div>
-                                        <div className="card-title">
-                                          <h4>{post[index+1].lessName}</h4>
-                                        </div>
-                                        <div className="card-descript">
-                                          <p>{post[index+1].lessDesc}</p>
-                                        </div>
-                                        <div className="card-btn">
-                                          <div className="d-grid gap-2">
-                                            <Button onClick={() => goToPage('/Chapters', post[index+1].lessName, post[index+1].lessDesc)} variant="success"  size='lg'>Time to Learn!</Button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                  )}
-                              </Stack>  ) : (<p></p>)}
-                      </div>)}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </body>
+            <Container>
+                <Row>
+                    <h1 className="text-dark" style={{fontSize: '100px', width: '1200px', paddingRight: '120px',  textAlign: 'center', marginBottom: '20px'}}>Tagalog Lessons</h1>
+                </Row>
+                {post.map((mess: any, index: number) => 
+                <div key={index}>
+                    {index % 2 != 1 ? (
+                        <Row>
+                            <Col class="col-md-5 col-md-offset-2">
+                                <Card border="success" style={{ width: '30rem', height: '33rem'}}> 
+                                <Card.Img variant="top" style={{borderBottom: 'gray 1px solid', height: '380px'}} src={loadImage(mess.LessImg.data)}/>
+                                    <Card.Body>
+                                        <Card.Title>{mess.lessName}</Card.Title>
+                                        <Card.Text>{mess.lessDesc}</Card.Text>
+                                        <Button variant="success"  onClick={() => goToPage('/Chapters', mess.lessName, mess.lessDesc )} size='lg'style={{position: "relative", left: "300px", fontWeight: 'bold'}}>Simulan!</Button>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                            {index + 1 < post.length && (
+                            <Col class='col-md-2'>
+                                <Card border="success" style={{ width: '30rem', height: '33rem'}}>
+                                <Card.Img variant="top" style={{borderBottom: 'gray 1px solid', height: '380px'}} src={loadImage(post[index+1].LessImg.data)}/> 
+                                    <Card.Body>
+                                        <Card.Title>{post[index+1].lessName} </Card.Title>
+                                        <Card.Text>{post[index+1].lessDesc} </Card.Text>
+                                        <Button variant="success"  onClick={() => goToPage('/Chapters', post[index+1].lessName, post[index+1].lessDesc)}
+                                         size='lg'style={{position: "relative", left: "300px", fontWeight: 'bold'}}>Simulan!</Button>
+                                    </Card.Body>
+                                </Card>
+                            </Col>)}
+                        </Row> ) : (<p></p>)}
+                </div>)}
+            </Container>
         </ThemeProvider>
     );
 };

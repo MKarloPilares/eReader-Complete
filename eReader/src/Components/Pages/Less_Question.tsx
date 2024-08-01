@@ -8,17 +8,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import RecAudio from '../Images/RecordedAudio.png';
 import { Image } from "react-bootstrap";
 import { useLocation } from 'react-router-dom';
-import './Less_Questions.css';
+import partyPopper from '../Images/party-popper.gif';
+import trophy from '../Images/Trophy.png';
+import { useNavigate } from 'react-router-dom';
 
 const Less_Question = () => {
+    let navigate = useNavigate();
     const [post, setPost] = useState<any[]>([]);
     const [isListening, setIsListening] = useState(false);
-    const [recognizedText, setRecognizedText] = useState('');
+    const [recognizedText, setRecognizedText] = useState('X');
     const [loading, setLoading] = useState(true);
     const [indexCheck, setIndexCheck] = useState(1);
     const location = useLocation();
-    const {LessDesc, ChapName} = location.state || {};
+    const {LessDesc, ChapName, LessName, Language} = location.state || {};
 
+    let recognition = new window.webkitSpeechRecognition(); 
 
     useEffect(() => {
       fetchData();
@@ -31,7 +35,7 @@ const Less_Question = () => {
         
         try {
             console.log(ChapName)
-            const response = await fetch('http://localhost:8000/lesson_questions', {
+            const response = await fetch('http://127.0.0.1:8000/lesson_questions', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -54,18 +58,29 @@ const Less_Question = () => {
 
     const startSpeechRecognition = () => {
         setIsListening(true);
-        const recognition = new window.webkitSpeechRecognition(); 
-        recognition.lang = 'en-US';
+        setRecognizedText('X')
+        if (Language == "English") {
+            recognition.lang = 'en-US';
+        }
+        else if (Language == "Tagalog") {
+            recognition.lang = 'tl-PH';
+        }
+        recognition.continuous = true; // Enable continuous recognition
         recognition.onresult = (event) => {
           const transcript = event.results[0][0].transcript;
           setRecognizedText(transcript);
+        
         };
+        if (recognizedText === '') {
+            setRecognizedText('X')
+          }
         recognition.start();
       };
     
       const stopSpeechRecognition = () => {
-        setIsListening(false);
+        recognition.start();
         recognition.stop();
+        setIsListening(false);
       };
     
 
@@ -85,61 +100,82 @@ const Less_Question = () => {
         }
 
         const start = async (element) => {
-            const url = `data:audio/mp3;base64,${btoa(String.fromCharCode(...new Uint8Array(element)))}`;
+            const url = loadObject(element, `data:audio/mp3;base64` )
             const audio = new Audio(url)
             audio.load()
             audio.play()
           }
 
+          const goToPage = (page, query, LessDesc) => {
+            navigate(page, {
+              state: {
+                Query: query,
+                LessName: query,
+                LessDesc: LessDesc
+              }
+            })
+          }
+
 
     return (
         <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']} minBreakpoint="xxs">
-            <body>
-              <div className="pane">
-                <div className="container">
-                  <div className="header">
-                    <h3>English Lesson / {ChapName}</h3>
-                    <h1>{ChapName}</h1>
-                    <p className="subHead">{LessDesc}</p>
-                  </div>
-                <div className="container-quest">
+            <Container fluid="sm" style={{ padding: '20px' }}>
+                <Row style={{ paddingTop: '55px', paddingBottom: '20px' }}>
+                    <Col style={indexCheck-1 == post.length ? {visibility:'hidden'} : {}}>
+                        <h1 >{ChapName}</h1>
+                        {LessDesc}
+                    </Col>
+                </Row>
                 {post.map((item: any, index: number) => 
-                <div>
-                    
+                <Row>
                     {indexCheck-1 == index ? (
-                    <div>
-                    <div>
-                        <h2>Direction: Read it loud and record your voice using the flashcards that shows on your screen. <Image src={RecAudio} rounded style={{ height: '50px', width:'60px' }}></Image></h2>
-                    </div>  
-                    <div>
-                        {item && item.QuestCard ? (
-                            <Image src={loadObject(item.QuestCard.data, "data:image/png;base64")} style={{width: "600px", height: "auto"}}></Image>
-                        ) : (
-                            <div>No video available</div> // Fallback if video is not available
-                            
-                        )}
-                        <Button className="toggle-btn"><Image src={RecAudio} onClick={() => start(item.QuestAud.data)} rounded style={{height: '50px', width:'60px'}}/></Button>
-                            <Button className="toggle-btn" variant="primary" size="lg" onClick={isListening ? stopSpeechRecognition : startSpeechRecognition}>
-                            {isListening ? "STOP RECORDING" : "RECORD"} </Button>
-                            <p></p>
-                            <h3 style={item.QuestAns === recognizedText ? ({color: 'green'}) : (recognizedText !== '' ? ({color: 'red'}) : 
-                                ({visibility: 'hidden'}))}>{item.QuestAns === recognizedText ? ("CORRECT! GOOD JOB!") : ("TRY AGAIN! YOU CAN DO IT!")}</h3>
-                            
-                            <div style={{margin: "20px"}}>
-                            <Button variant="primary" size="lg" onClick={() => setIndexCheck(indexCheck-1)}> BACK </Button>
-                            <Button variant="primary" style={{position: "relative", float: "right"}}size="lg" onClick={() => setIndexCheck(indexCheck+1)}> NEXT </Button>
-                            </div>
-                    </div>
-                    </div>
-                    ) : (<h2>Chapter Finished! Congratulations!</h2>
-                    )}
-                </div>
+                    <Container fluid style={{ border: '1px solid black', width: '63vw' }}> 
+                        <Row>
+                            <Col className="col-md-10"> 
+                                <h2>Direction: Read it loud and record your voice using the flashcards that shows on your screen.</h2> 
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md="auto">
+                                {item && item.QuestCard ? (
+                                    <Image src={loadObject(item.QuestCard.data, "data:image/png;base64")} style={{width: "61vw", height: "500px"}}></Image>
+                                ) : (
+                                    <div>No video available</div>
+                                )}
+                            </Col>
+                        </Row>
+                        <Row className='justify-content-center' style={{ padding: '20px' }}>
+                            <Col md="auto">
+                                <Button variant="danger" size="lg" onClick={() => start(item.QuestAud.data)} style={{position: 'relative', right: '80px'}}>PLAY SOUND</Button>
+                                <Button variant="primary" size="lg" style={{position: 'relative', left: '38%'}} onClick={isListening ? stopSpeechRecognition : startSpeechRecognition} 
+                                disabled={recognizedText=== 'X' && isListening}>
+                                     {isListening ? "STOP RECORDING" : "RECORD"} </Button>
+                                <p></p>
+                                <h3 style={item.QuestAns.toLowerCase().includes(recognizedText) ? ({color: 'green'}) : (recognizedText !== 'X' ? ({color: 'red'}) : 
+                                    ({visibility: 'hidden'}))}>{item.QuestAns.toLowerCase().includes(recognizedText)  ? ("CORRECT! GOOD JOB!") : ("TRY AGAIN! YOU CAN DO IT!")}</h3>
+                            </Col>
+                        </Row>
+                        <Row className='justify-content-end' style={{ padding: '20px' }}>
+                            <Col md="auto" style={{position: 'relative', right: '82%'}}>
+                                <Button variant="warning" size="lg" style={indexCheck-1 <= 0 ? {visibility: 'hidden'} : {}} onClick={() => {setIndexCheck(indexCheck-1); setRecognizedText('X')}}> BACK </Button></Col>
+                            <Col md="auto"><Button variant="success" size="lg" onClick={() => {setIndexCheck(indexCheck+1); setRecognizedText('X')}}> NEXT </Button></Col>
+                        </Row>
+                    </Container>
+                    ) : (<h2></h2>)
+                    }
+                </Row>
                 )}
-                </div>
-                               
-                    </div>
-                </div>
-            </body>
+                <Container style={indexCheck-1 < post.length ? {visibility:'hidden'} : {}}>
+                    <h1 style={{position: 'fixed', fontSize: '5vw', left: '30vw', bottom: '75vh', backgroundImage: 'linear-gradient(to right, #f12711, #f5af19)', 
+                    WebkitBackgroundClip: 'text', color: 'transparent'}}>Congratulations!</h1>
+                    <Image src={partyPopper} style={{position: 'fixed', bottom: '19vh', left: '10vw', width: '30vw'}}></Image>
+                    <Image src={trophy} style={{position: 'fixed', zIndex: '50', bottom: '20vh', right: '25vw', width: '50vw'}}></Image>
+                    <Image src={partyPopper} style={{transform: 'scaleX(-1)', position: 'fixed', bottom: '20vh', left: '58vw', width: '30vw'}}></Image>
+                    <Button variant='success' size='lg' onClick={() => goToPage("/Chapters", LessName, LessDesc)} style={{position: 'fixed', bottom: '15vh', left: '25vw', width: '50vw'}}>Back to Chapters</Button>
+                </Container>
+                <Row style={{ paddingTop: '50px', paddingBottom: '20px' }}>
+                </Row>
+            </Container>
         </ThemeProvider>
     );
 };
