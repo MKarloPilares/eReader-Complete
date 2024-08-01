@@ -44,20 +44,20 @@ const Tag_Assessment = () => {
     })
   }
 
-  const loadImage = (element) => {
+  const loadImage = (element: ArrayBuffer) => {
     const CHUNK_SIZE = 0x8000;
-    const byteCharacters = [];
+    const byteCharacters: string[] = [];
     const array = new Uint16Array(element);
 
-    for (let offset = 0; offset < array.byteLength; offset += CHUNK_SIZE){
-      const chunk = array.slice(offset, offset + CHUNK_SIZE);
-      byteCharacters.push(String.fromCharCode.apply(null, chunk));
+    for (let offset = 0; offset < array.length; offset += CHUNK_SIZE) {
+        const chunk = array.slice(offset, offset + CHUNK_SIZE);
+        byteCharacters.push(String.fromCharCode(...chunk));
     }
 
     const blobBTOA = btoa(byteCharacters.join(''));
     const url = `data:image/png;base64,${blobBTOA}`;
-    return(url)
-  }
+    return url;
+}
 
   return (
     <ThemeProvider

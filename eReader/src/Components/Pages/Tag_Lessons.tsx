@@ -47,20 +47,21 @@ const Tag_Lessons = () => {
       }
     };
 
-    const loadImage = (element) => {
-        const CHUNK_SIZE = 0x8000;
-        const byteCharacters = [];
-        const array = new Uint16Array(element);
-    
-        for (let offset = 0; offset < array.byteLength; offset += CHUNK_SIZE){
+    const loadImage = (element: ArrayBuffer) => {
+      const CHUNK_SIZE = 0x8000;
+      const byteCharacters: string[] = [];
+      const array = new Uint16Array(element);
+  
+      for (let offset = 0; offset < array.length; offset += CHUNK_SIZE) {
           const chunk = array.slice(offset, offset + CHUNK_SIZE);
-          byteCharacters.push(String.fromCharCode.apply(null, chunk));
-        }
-    
-        const blobBTOA = btoa(byteCharacters.join(''));
-        const url = `data:image/png;base64,${blobBTOA}`;
-        return(url)
+          byteCharacters.push(String.fromCharCode(...chunk));
       }
+  
+      const blobBTOA = btoa(byteCharacters.join(''));
+      const url = `data:image/png;base64,${blobBTOA}`;
+      return url;
+  }
+  
 
     return (
         <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}

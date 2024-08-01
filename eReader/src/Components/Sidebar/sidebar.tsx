@@ -2,8 +2,6 @@ import { useState } from 'react';
 import CIcon from '@coreui/icons-react';
 import { cilScreenDesktop, cilBook, cilPencil, cilHamburgerMenu, cilX} from '@coreui/icons';
 import { useNavigate } from 'react-router-dom';
-import logo from '../Images/e-reader_Logo.svg'
-import { Image } from 'react-bootstrap';
 
 import './sidebar.css'; // Import CSS file for styling
 

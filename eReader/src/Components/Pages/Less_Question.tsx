@@ -5,12 +5,17 @@ import Button from 'react-bootstrap/Button';
 import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import RecAudio from '../Images/RecordedAudio.png';
 import { Image } from "react-bootstrap";
 import { useLocation } from 'react-router-dom';
 import partyPopper from '../Images/party-popper.gif';
 import trophy from '../Images/Trophy.png';
 import { useNavigate } from 'react-router-dom';
+
+declare global {
+    interface Window {
+      webkitSpeechRecognition: any;
+    }
+  }
 
 const Less_Question = () => {
     let navigate = useNavigate();
@@ -84,20 +89,21 @@ const Less_Question = () => {
       };
     
 
-      const loadObject = (element, urlString ) => {
+      const loadObject = (element: ArrayBuffer, urlString: string): string => {
         const CHUNK_SIZE = 0x8000;
-        const byteCharacters = [];
+        const byteCharacters: string[] = [];
         const array = new Uint16Array(element);
-      
-        for (let offset = 0; offset < array.byteLength; offset += CHUNK_SIZE){
-          const chunk = array.slice(offset, offset + CHUNK_SIZE);
-          byteCharacters.push(String.fromCharCode.apply(null, chunk));
+    
+        for (let offset = 0; offset < array.length; offset += CHUNK_SIZE) {
+            const chunk = array.slice(offset, offset + CHUNK_SIZE);
+            byteCharacters.push(String.fromCharCode(...chunk));
         }
-      
+    
         const blobBTOA = btoa(byteCharacters.join(''));
         const url = `${urlString},${blobBTOA}`;
-        return(url)
-        }
+        return url;
+    }
+    
 
         const start = async (element) => {
             const url = loadObject(element, `data:audio/mp3;base64` )
