@@ -126,45 +126,55 @@ const Less_Question = () => {
     return (
         <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']} minBreakpoint="xxs">
             <Container fluid="sm" style={{ padding: '20px' }}>
-                <Row style={{ paddingTop: '55px', paddingBottom: '20px' }}>
+                <Row xs='auto' style={{  }}>
                     <Col style={indexCheck-1 == post.length ? {visibility:'hidden'} : {}}>
-                        <h1 >{ChapName}</h1>
+                        <h1 style={{ fontSize: '5vw', backgroundImage: 'linear-gradient(to right, #f12711, #f5af19)', WebkitBackgroundClip: 'text', color: 'transparent' }} >{ChapName}</h1>
                         {LessDesc}
                     </Col>
                 </Row>
                 {post.map((item: any, index: number) => 
-                <Row>
+                <Row xs='auto'>
                     {indexCheck-1 == index ? (
-                    <Container fluid style={{ border: '1px solid black', width: '63vw' }}> 
-                        <Row>
-                            <Col className="col-md-10"> 
-                                <h2>Direction: Read it loud and record your voice using the flashcards that shows on your screen.</h2> 
+                    <Container fluid style={{ border: '1px solid black' }}> 
+                        <Row xs='auto'>
+                            <Col xs={12} m={8} style={{ margin: '5px'}}> 
+                                <h4>Direction: Read it loud and record your voice using the flashcards that shows on your screen.</h4> 
                             </Col>
                         </Row>
                         <Row>
-                            <Col md="auto">
+                            <Col xs={12} m={8}>
                                 {item && item.QuestCard ? (
-                                    <Image src={loadObject(item.QuestCard.data, "data:image/png;base64")} style={{width: "61vw", height: "500px"}}></Image>
+                                    <Image className="img-fluid" src={loadObject(item.QuestCard.data, "data:image/png;base64")} style={{}}></Image>
                                 ) : (
                                     <div>No video available</div>
                                 )}
                             </Col>
                         </Row>
-                        <Row className='justify-content-center' style={{ padding: '20px' }}>
-                            <Col md="auto">
-                                <Button variant="danger" size="lg" onClick={() => start(item.QuestAud.data)} style={{position: 'relative', right: '80px'}}>PLAY SOUND</Button>
-                                <Button variant="primary" size="lg" style={{position: 'relative', left: '38%'}} onClick={isListening ? stopSpeechRecognition : startSpeechRecognition} 
-                                disabled={recognizedText=== 'X' && isListening}>
+                        <Row xs='auto' style={{marginTop: '20px', marginBottom: '50px' }}>
+                            <Col>
+                                <div className='d-grid gap-2'>
+                                    <Button variant="danger" size="lg" onClick={() => start(item.QuestAud.data)} style={{}}>PLAY SOUND</Button>
+                                </div>
+                            </Col>
+                            <Col>
+                                <div className='d-grid gap-2'>
+                                    <Button variant="primary" size="lg" style={{}} onClick={isListening ? stopSpeechRecognition : startSpeechRecognition} 
+                                    disabled={recognizedText=== 'X' && isListening}>
                                      {isListening ? "STOP RECORDING" : "RECORD"} </Button>
-                                <p></p>
+                                </div>
                                 <h3 style={item.QuestAns.toLowerCase().includes(recognizedText) ? ({color: 'green'}) : (recognizedText !== 'X' ? ({color: 'red'}) : 
                                     ({visibility: 'hidden'}))}>{item.QuestAns.toLowerCase().includes(recognizedText)  ? ("CORRECT! GOOD JOB!") : ("TRY AGAIN! YOU CAN DO IT!")}</h3>
                             </Col>
                         </Row>
-                        <Row className='justify-content-end' style={{ padding: '20px' }}>
-                            <Col md="auto" style={{position: 'relative', right: '82%'}}>
-                                <Button variant="warning" size="lg" style={indexCheck-1 <= 0 ? {visibility: 'hidden'} : {}} onClick={() => {setIndexCheck(indexCheck-1); setRecognizedText('X')}}> BACK </Button></Col>
-                            <Col md="auto"><Button variant="success" size="lg" onClick={() => {setIndexCheck(indexCheck+1); setRecognizedText('X')}}> NEXT </Button></Col>
+                        <Row  xs='auto' style={{ marginBottom: '50px' }}>
+                            <Col xs={12} m={8}>
+                                <Button variant="warning" size="lg" style={indexCheck-1 <= 0 ? {visibility: 'hidden'} : {}} onClick={() => {setIndexCheck(indexCheck-1); setRecognizedText('X')}}> BACK </Button>
+                            </Col>
+                            <Col xs={12} m={8}>
+                                <div className='d-grid gap-2'>
+                                    <Button variant="success" size="lg" onClick={() => {setIndexCheck(indexCheck+1); setRecognizedText('X')}}> NEXT </Button>
+                                </div>
+                            </Col>
                         </Row>
                     </Container>
                     ) : (<h2></h2>)

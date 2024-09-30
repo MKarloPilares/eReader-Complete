@@ -128,18 +128,18 @@ const goToPage = (page) => {
 
   return (
     <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']} minBreakpoint="xxs">
-    <Container fluid="sm" style={{ padding: '20px' }}>
-    <Row style={{ paddingTop: '55px', paddingBottom: '20px' }}>
+    <Container fluid>
+    <Row xs='auto'>
             <Col>
-                <h1 style={indexCheck-1 == post.length ? {visibility:'hidden'} : {}}>{AssName}</h1>
+                <h1 style={indexCheck-1 == post.length ? {visibility:'hidden'} : { fontSize: '5vw', backgroundImage: 'linear-gradient(to right, #f12711, #f5af19)', WebkitBackgroundClip: 'text', color: 'transparent' }}>{AssName}</h1>
             </Col>
         </Row>
         {post.map((item: any, index: number) => 
-        <Row>
+        <Row xs='auto'>
             {indexCheck-1 == index ? (
-            <Container fluid style={{ border: '1px solid black', width: '63vw' }}> 
-                <Row>
-                    <Col className="col-md-10"> 
+            <Container fluid style={{ border: '1px solid black', padding: '10px'}}> 
+                <Row xs='auto'>
+                    <Col> 
                     <h2>{item.Quest}
                         {item.AssAud &&
                             <Image src={RecAudio} onClick={() => start(item.AssAud.data)} rounded style={{ height: '50px', width:'60px' }}></Image>
@@ -147,28 +147,34 @@ const goToPage = (page) => {
                     </h2> 
                     </Col>
                 </Row>
-                <Row>
-                    <Col md="auto">
+                <Row xs='auto'>
+                    <Col>
                         {item && item.AssImg ? (
-                            <Image src={loadImage(item.AssImg.data)} style={{width: "61vw", height: "500px"}}></Image>
+                            <Image className='img-fluid' src={loadImage(item.AssImg.data)} style={{ }}></Image>
                         ) : (
                             <div>No Image available</div>
                         )}
                     </Col>
                 </Row>
-                <Row className='justify-content-center' style={{ padding: '20px' }}>
-                    <Col md="auto">
-                        <Button variant="primary" size="lg" style={{position: 'relative', left: '30%'}} onClick={isListening ? stopSpeechRecognition : startSpeechRecognition}
-                        disabled={recognizedText=== 'X' && isListening}>
-                             {isListening ? "STOP RECORDING" : "RECORD"} </Button>
-                        <p></p>
+                <Row xs='auto' style={{  }}>
+                    <Col>
+                        <div className="d-grid gap-2">
+                          <Button variant="primary" size="lg" style={{ }} onClick={isListening ? stopSpeechRecognition : startSpeechRecognition}
+                          disabled={recognizedText=== 'X' && isListening}>
+                              {isListening ? "STOP RECORDING" : "RECORD"} </Button>
+                        </div>
                         <h3 style={item.AssAns.toLowerCase().includes(recognizedText) ? ({color: 'green'}) : (recognizedText !== 'X' ? ({color: 'red'}) : 
                             ({visibility: 'hidden'}))}>{item.AssAns.toLowerCase().includes(recognizedText)  ? ("CORRECT! GOOD JOB!") : ("TRY AGAIN! YOU CAN DO IT!")}</h3>
                     </Col>
                 </Row>
-                <Row className='justify-content-end' style={{ padding: '20px' }}>
-                    <Col md="auto" style={{position: 'relative', right: '82%'}}><Button variant="danger" size="lg" style={indexCheck-1 <= 0 ? {visibility: 'hidden'} : {}} onClick={() => {setIndexCheck(indexCheck-1); setRecognizedText('X')}}> BACK </Button></Col>
-                    <Col md="auto"><Button variant="success" size="lg" onClick={() => handleClick(item.AssAns)}> NEXT </Button></Col>
+                <Row className='justify-content-end' style={{ margin: '10px' }}>
+                    <Col style={{ }}><Button variant="danger" size="lg" style={indexCheck-1 <= 0 ? {visibility: 'hidden'} : {}} onClick={() => {setIndexCheck(indexCheck-1); setRecognizedText('X')}}> BACK </Button>
+                    </Col>
+                    <Col>
+                      <div className="d-grid gap-2">
+                      <Button variant="success" size="lg" onClick={() => handleClick(item.AssAns)}> NEXT </Button>
+                      </div>  
+                    </Col>
                 </Row>
             </Container>
             ) : (<h2></h2>

@@ -71,22 +71,22 @@ const Chapter = () => {
         <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
         minBreakpoint="xxs">
             <Container>
-                <Row>
-                    <h1 style={{ paddingTop: '50px',textAlign: 'left', fontSize: '92px' }}>{LessName}</h1>
+                <Row xs='auto'>
+                    <h1 style={{ fontSize: '5vw', backgroundImage: 'linear-gradient(to right, #f12711, #f5af19)', WebkitBackgroundClip: 'text', color: 'transparent' }}>{LessName}</h1>
                 </Row>
-                <Row>
+                <Row xs='auto'>
                     <p className="subHead">{LessDesc}</p>
                 </Row>
                 {post.map((mess: any, index: number) => 
-                <Row key={index}>
-                    <Row style={{paddingTop: '20px', paddingBottom: '20px'}}>
-                        <Card border= "success" style={{ width: '80vw', height: '38vh'}}>
-                            <Card.Img src={loadImage(mess.ChapImg.data)} style={{ position: 'absolute', width: '24vw', height: '35vh', left: '18px', top: '18px'}}/>
+                <Row xs='auto' key={index}>
+                    <Row xs='auto' style={{paddingTop: '20px', paddingBottom: '20px'}}>
+                        <Card border= "success" style={{ padding: '20px' }}>
+                            <Card.Img className='img-fluid' src={loadImage(mess.ChapImg.data)} style={{ }}/>
                             <Card.Body>
-                                <CardSubtitle style={{ position: 'absolute', left: '26vw', top: '3vh', fontSize: '46px'}}>{mess.ChapName}</CardSubtitle>
-                                <CardTitle style={{ position: 'absolute', left: '26vw', top: '8vh', fontSize: '52px', fontWeight: 'bolder'}}>{mess.ChapDesc}</CardTitle>
-                                <Button variant="primary" onClick={() => goToPage("/Less_Question", LessDesc, mess.ChapName)} style={{ position: 'absolute', width: '182px', height: '116px', right: '29px', bottom: '24px', backgroundColor: '#FFD700', border: 'none'}}
-                                    ><CIcon icon={cilArrowThickRight} style={{width: '160px', height: '90px'}}/></Button>
+                                <CardSubtitle style={{  fontSize: '2.5vw'}}>{mess.ChapName}</CardSubtitle>
+                                <CardTitle style={{  fontSize: '5vw', fontWeight: 'bolder'}}>{mess.ChapDesc}</CardTitle>
+                                <Button variant="primary" size='lg' onClick={() => goToPage("/Less_Question", LessDesc, mess.ChapName)} style={{  backgroundColor: '#FFD700', border: 'none'}}
+                                    ><CIcon icon={cilArrowThickRight} style={{ width: '50px', height: '50px' }}/></Button>
                             </Card.Body>
                         </Card>
                     </Row>
