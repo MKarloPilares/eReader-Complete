@@ -28,7 +28,7 @@ const Tag_DashBoard = () => {
           <Row>
             <Col class="col-md-5 col-md-offset-2">
               <Card border="success" style={{ width: '30rem' }}> 
-                  <Card.Img variant="top" style={{borderBottom: 'gray 1px solid'}} src={img1}/> 
+                  <Card.Img className="img-fluid" variant="top" style={{borderBottom: 'gray 1px solid'}} src={img1}/> 
                 <Card.Body>
                   <Card.Title> LESSONS</Card.Title>
                   <Button variant="success" onClick={() => goToPage("/Tag_Lessons")} size='lg'style={{position: "relative", left: "300px", fontWeight: 'bold'}}>Let's Begin!</Button>
