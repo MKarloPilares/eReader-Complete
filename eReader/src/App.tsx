@@ -49,13 +49,13 @@ const App = () => {
           <Sidebar sendToggle={toggleSidebar}/>
           <Container
             style={isSidebarOpen ? {
-              padding: '50px',
+              padding: '10px',
               position: 'relative',
-              marginLeft: '25vw'
+              marginLeft: '20vw'
             } : {              
-              padding: '50px',
+              padding: '5px',
               position: 'relative',
-              marginLeft: '15vw'}
+              marginLeft: '5vw'}
             }
           >
             <Routes>

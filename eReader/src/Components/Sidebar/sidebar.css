@@ -35,3 +35,9 @@
   background-color: #ffd700;
   color: #228b22;
 }
+
+#s {
+  overflow: scroll;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}

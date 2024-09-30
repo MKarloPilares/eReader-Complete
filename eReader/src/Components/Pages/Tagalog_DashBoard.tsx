@@ -21,28 +21,28 @@ const Tag_DashBoard = () => {
     breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
     minBreakpoint="xxs"
   >
-    <Container>
-          <Row>
-          <h1 className='text-dark' style={{fontSize: '120px', width: '1200px', paddingRight: '120px',  textAlign: 'center', marginBottom: "20px"}}>Tagalog</h1>
+    <Container fluid="sm">
+          <Row xs='auto'>
+            <Col>
+              <h1 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '10vw', backgroundImage: 'linear-gradient(to right, #f12711, #f5af19)', WebkitBackgroundClip: 'text', color: 'transparent'}}>TAGALOG</h1>
+            </Col>
           </Row>
-          <Row>
-            <Col class="col-md-5 col-md-offset-2">
-              <Card border="success" style={{ width: '30rem' }}> 
-                  <Card.Img variant="top" style={{borderBottom: 'gray 1px solid'}} src={img1}/> 
+          <Row xs='auto'>
+            <Col xs={12} md={6}>
+              <Card border="success" style={{ }}> 
+                  <Card.Img className="img-fluid" variant="top" style={{borderBottom: 'gray 1px solid'}} src={img1}/> 
                 <Card.Body>
                   <Card.Title> LESSONS</Card.Title>
-                  <Card.Text>Lorem ipsum dolor sit amet, </Card.Text>
-                  <Button variant="success" onClick={() => goToPage("/Tag_Lessons")} size='lg'style={{position: "relative", left: "300px", fontWeight: 'bold'}}>Let's Begin!</Button>
+                  <Button variant="success" onClick={() => goToPage("/Tag_Lessons")} size='lg'style={{ fontWeight: 'bold' }}>Let's Begin!</Button>
                 </Card.Body>
               </Card>
             </Col>
-          <Col class='col-md-2'>
-            <Card border="success" style={{ width: '30rem' }}> 
+          <Col xs={12} md={6}>
+            <Card border="success" style={{ }}> 
                 <Card.Img variant="top" style={{borderBottom: 'gray 1px solid'}} src={img2}/> 
               <Card.Body>
                 <Card.Title> ASSESSMENT</Card.Title>
-                <Card.Text>Lorem ipsum dolor sit amet, </Card.Text>
-                <Button onClick={() => goToPage('/Tag_Assessments')}  variant="success" size='lg'style={{position: "relative", left: "220px", fontWeight: 'bold'}}>Challenge Accepted!</Button>
+                <Button onClick={() => goToPage('/Tag_Assessments')}  variant="success" size='lg'style={{ fontWeight: 'bold'}}>Challenge Accepted!</Button>
               </Card.Body>
             </Card>
           </Col>

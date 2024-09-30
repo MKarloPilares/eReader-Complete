@@ -64,32 +64,32 @@ const Tag_Assessment = () => {
     breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
     minBreakpoint="xxs"
   >
-    <Container>
-        <Row>
-        <h1 className='text-dark' style={{fontSize: '100px', width: '1200px', paddingRight: '120px', textAlign: 'center', marginBottom: '20px'}}>Tagalog Assessments</h1>
+    <Container fluid='xs'>
+        <Row xs='auto'>
+        <h1 className='text-dark' style={{fontSize: '5vw', backgroundImage: 'linear-gradient(to right, #f12711, #f5af19)', WebkitBackgroundClip: 'text', color: 'transparent'}}>Tagalog Assessments</h1>
         </Row> 
         {post.map((mess: any, index: number) => 
         <div key={index}>
         {index % 2 != 1 ? (
-        <Row>
-          <Col class="col-md-5 col-md-offset-2">
-          <Card border="success" style={{ width: '30rem', height: '33rem' }}> 
+        <Row xs='auto'>
+          <Col xs={12} md={6}>
+          <Card border="success" style={{  }}> 
           <Card.Img variant="top"  style={{borderBottom: 'gray 1px solid', height: '380px'}} src={loadImage(mess.AssImg.data)}/> 
           <Card.Body>
             <Card.Title>{mess.AssName}</Card.Title>
             <Card.Text>{mess.AssDesc}</Card.Text>
-            <Button variant="success"  onClick={() => goToPage("/Oral_Assessment", mess.AssName)} size='lg'style={{position: "relative", left: "300px", fontWeight: 'bold'}}>Simulan!</Button>
+            <Button variant="success"  onClick={() => goToPage("/Oral_Assessment", mess.AssName)} size='lg'style={{ fontWeight: 'bold'}}>Simulan!</Button>
           </Card.Body>
           </Card>
           </Col>
           {index + 1 < post.length && (
-          <Col class="col-md-4">
-          <Card border="success" style={{ width: '30rem', height: '33rem' }}> 
+          <Col xs={12} md={6}>
+          <Card border="success" style={{  }}> 
           <Card.Img variant="top" style={{borderBottom: 'gray 1px solid', height: '380px'}} src={loadImage(post[index+1].AssImg.data)}/> 
           <Card.Body>
             <Card.Title>{post[index+1].AssName}</Card.Title>
             <Card.Text>{post[index+1].AssDesc} </Card.Text>
-            <Button variant="success" onClick={() => goToPage("/Oral_Assessment", post[index+1].AssName)} size='lg'style={{position: "relative", left: "300px", fontWeight: 'bold'}}>Simulan!</Button>
+            <Button variant="success" onClick={() => goToPage("/Oral_Assessment", post[index+1].AssName)} size='lg'style={{ fontWeight: 'bold'}}>Simulan!</Button>
           </Card.Body>
           </Card>
           </Col>)}

@@ -42,7 +42,7 @@ const Lessons = ({setCurrentPage, setQuery}) => {
     return (
         <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
         minBreakpoint="xxs">
-            <Container>
+            <Container fluid>
                 <Row>
                     <h1 className="text-dark" style={{fontSize: '120px', width: '1200px', paddingRight: '120px',  textAlign: 'center'}}>Time to Learn!</h1>
                 </Row>

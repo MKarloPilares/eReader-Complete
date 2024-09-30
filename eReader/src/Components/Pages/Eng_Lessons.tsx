@@ -66,33 +66,35 @@ const Eng_Lessons = () => {
         <ThemeProvider breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
         minBreakpoint="xxs">
             <Container>
-                <Row>
-                    <h1 className="text-dark" style={{fontSize: '100px', width: '1200px', paddingRight: '120px',  textAlign: 'center', marginBottom: '20px'}}>English Lessons</h1>
+                <Row xs='auto'>
+                  <Col>
+                    <h1 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '5vw', backgroundImage: 'linear-gradient(to right, #f12711, #f5af19)', WebkitBackgroundClip: 'text', color: 'transparent'}}>ENGLISH LESSONS</h1>
+                  </Col>
                 </Row>
                 {post.map((mess: any, index: number) => 
                 <div key={index}>
                     {index % 2 != 1 ? (
-                        <Row>
-                            <Col class="col-md-5 col-md-offset-2">
-                                <Card border="success" style={{ width: '30rem', height: '33rem' }}> 
+                        <Row xs='auto'>
+                            <Col xs={12} md={6}>
+                                <Card border="success" style={{ }}> 
                                 <Card.Img variant="top" style={{borderBottom: 'gray 1px solid', height: '380px'}} src={loadImage(mess.LessImg.data)}/>
                                     <Card.Body>
                                         <Card.Title>{mess.lessName}</Card.Title>
                                         <Card.Text>{mess.lessDesc}</Card.Text>
                                         <Button variant="success" onClick={() => goToPage('/Chapters', mess.lessName, mess.lessDesc )}
-                                        size='lg'style={{position: "relative", left: "300px", fontWeight: 'bold'}}>Let's Begin!</Button>
+                                        size='lg'style={{ fontWeight: 'bold'}}>Let's Begin!</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>
                             {index + 1 < post.length && (
-                            <Col class='col-md-2'>
-                                <Card border="success" style={{ width: '30rem', height: '33rem' }}>
+                            <Col xs={12} md={6}>
+                                <Card border="success" style={{ }}>
                                 <Card.Img variant="top" style={{borderBottom: 'gray 1px solid', height: '380px'}} src={loadImage(post[index+1].LessImg.data)}/> 
                                     <Card.Body>
                                         <Card.Title>{post[index+1].lessName} </Card.Title>
                                         <Card.Text>{post[index+1].lessDesc} </Card.Text>
                                         <Button variant="success"  onClick={() => goToPage('/Chapters', post[index+1].lessName, post[index+1].lessDesc)}
-                                        size='lg'style={{position: "relative", left: "220px", fontWeight: 'bold'}}>Let's Begin!</Button>
+                                        size='lg'style={{ fontWeight: 'bold'}}>Let's Begin!</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>)}
