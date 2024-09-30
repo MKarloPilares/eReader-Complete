@@ -32,7 +32,6 @@ const Eng_DashBoard = () => {
                   <Card.Img variant="top" style={{borderBottom: 'gray 1px solid'}} src={img1}/> 
                 <Card.Body>
                   <Card.Title> LESSONS</Card.Title>
-                  <Card.Text>Lorem ipsum dolor sit amet, </Card.Text>
                   <Button variant="success"  onClick={() => goToPage("/Eng_Lessons")} size='lg'style={{position: "relative", left: "300px", fontWeight: 'bold'}}>Let's Begin!</Button>
                 </Card.Body>
               </Card>
@@ -42,7 +41,6 @@ const Eng_DashBoard = () => {
                 <Card.Img variant="top" style={{borderBottom: 'gray 1px solid'}} src={img2}/> 
               <Card.Body>
                 <Card.Title> ASSESSMENT</Card.Title>
-                <Card.Text>Lorem ipsum dolor sit amet, </Card.Text>
                 <Button onClick={() => goToPage('/Eng_Assessments')} variant="success"  size='lg'style={{position: "relative", left: "220px", fontWeight: 'bold'}}>Challenge Accepted!</Button>
               </Card.Body>
             </Card>
