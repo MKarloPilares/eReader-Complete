@@ -15,11 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-<<<<<<< HEAD
-    password: "adminSQL123@456",
-=======
-    password: "MySQLPassword205",
->>>>>>> 382fb309610bb726ed6acd9c4e712c76651bd56d
+    password: "db@ad_min&;:098",
     database: "new_ereader_schema"
   });
 
