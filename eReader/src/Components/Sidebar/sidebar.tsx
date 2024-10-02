@@ -33,7 +33,6 @@ const Sidebar = ({sendToggle}) => {
       </button>
       <ul className="sidebar-menu">
         <li onClick={() => goToPage('')}><CIcon icon={cilScreenDesktop} style={{width: '45px', height: '45px'}}/>  DASHBOARD</li>
-<<<<<<< HEAD
         <li onClick={() => {toggleSidebar(); sendToggle(isOpen); goToPage('/Eng_DashBoard')}} style={{fontSize: '35px', marginLeft: '40px'}}><CIcon icon={cilScreenDesktop} style={{width: '35px', height: '35px'}}/>  English</li>
         <li  onClick={() => {toggleSidebar(); sendToggle(isOpen); goToPage('/Tag_DashBoard')}} style={{fontSize: '35px', marginLeft: '40px'}}><CIcon icon={cilScreenDesktop} style={{width: '35px', height: '35px'}}/>  Tagalog</li>
         <li onClick={() => setLessonOpen(!lessonsOpen)}><CIcon icon={cilBook} style={{width: '45px', height: '45px'}}/> LESSONS</li>
@@ -41,27 +40,13 @@ const Sidebar = ({sendToggle}) => {
           <>
             <li  onClick={() => {toggleSidebar(); sendToggle(isOpen); goToPage('/Eng_Lessons')}} style={{fontSize: '35px', marginLeft: '40px'}}><CIcon icon={cilBook} style={{width: '35px', height: '35px'}}/>  English</li>
             <li  onClick={() => {toggleSidebar(); sendToggle(isOpen); goToPage('/Tag_Lessons')}}  style={{fontSize: '35px', marginLeft: '40px'}}><CIcon icon={cilBook} style={{width: '35px', height: '35px'}}/>  Tagalog</li>
-=======
-        <li onClick={() => {toggleSidebar(); sendToggle(isOpen);goToPage('/Eng_DashBoard')}}  style={{fontSize: '35px', marginLeft: '40px'}}><CIcon icon={cilScreenDesktop} style={{width: '35px', height: '35px'}}/>  English</li>
-        <li  onClick={() =>{toggleSidebar(); sendToggle(isOpen);goToPage('/Tag_DashBoard')}}  style={{fontSize: '35px', marginLeft: '40px'}}><CIcon icon={cilScreenDesktop} style={{width: '35px', height: '35px'}}/>  Tagalog</li>
-        <li onClick={() => setLessonOpen(!lessonsOpen)}><CIcon icon={cilBook} style={{width: '45px', height: '45px'}}/> LESSONS</li>
-        {lessonsOpen && 
-          <>
-            <li  onClick={() => {toggleSidebar(); sendToggle(isOpen);goToPage('/Eng_Lessons')}} style={{fontSize: '35px', marginLeft: '40px'}}><CIcon icon={cilBook} style={{width: '35px', height: '35px'}}/>  English</li>
-            <li  onClick={() => {toggleSidebar(); sendToggle(isOpen);goToPage('/Tag_Lessons')}}  style={{fontSize: '35px', marginLeft: '40px'}}><CIcon icon={cilBook} style={{width: '35px', height: '35px'}}/>  Tagalog</li>
->>>>>>> 382fb309610bb726ed6acd9c4e712c76651bd56d
           </>
         }
         <li onClick={() => setAssessmentOpen(!assessmentOpen)}><CIcon icon={cilPencil} style={{width: '45px', height: '45px'}}/> ASSESSMENT</li>
         {assessmentOpen && 
           <>
-<<<<<<< HEAD
             <li onClick={() => {toggleSidebar(); sendToggle(isOpen); goToPage('/Eng_Assessments')}} style={{fontSize: '35px', marginLeft: '40px'}}><CIcon icon={cilPencil} style={{width: '35px', height: '35px'}}/>  English</li>
             <li onClick={() => {toggleSidebar(); sendToggle(isOpen); goToPage('/Tag_Assessments')}} style={{fontSize: '35px', marginLeft: '40px'}}><CIcon icon={cilPencil} style={{width: '35px', height: '35px'}}/>  Tagalog</li>
-=======
-            <li onClick={() => {toggleSidebar(); sendToggle(isOpen);goToPage('/Eng_Assessments')}} style={{fontSize: '35px', marginLeft: '40px'}}><CIcon icon={cilPencil} style={{width: '35px', height: '35px'}}/>  English</li>
-            <li onClick={() => {toggleSidebar(); sendToggle(isOpen);goToPage('/Tag_Assessments')}} style={{fontSize: '35px', marginLeft: '40px'}}><CIcon icon={cilPencil} style={{width: '35px', height: '35px'}}/>  Tagalog</li>
->>>>>>> 382fb309610bb726ed6acd9c4e712c76651bd56d
           </>
         }
       </ul>
